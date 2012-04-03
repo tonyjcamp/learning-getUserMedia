@@ -34,7 +34,7 @@
 
 		<!-- NEEDS THE DAMN WIDTH AND HEIGHT SET ON THE ELEMENT -->
 		<canvas id="snapshot" width="640" height="480" class="hidden">
-			
+
 		</canvas>
 
 		<button id="take">Take Picture</button>
@@ -83,11 +83,11 @@
 			var FILTER_VALS = {};
 
 			var filters = ['grayscale', 'sepia', 'blur', 'brightness', 'contrast', 'hue-rotate', 'hue-rotate2', 'hue-rotate3', 'saturate', 'invert', 'reset'];
-			
+
 			var addEvents = function ( lis, filter ) {
 				lis.addEventListener('click', function() {
 					// document.querySelector('canvas').classList.add(filter);
-					
+
 					if ( this.classList[0] === 'reset' ) {
 						reset();
 					} else {
@@ -127,9 +127,9 @@
 				VIDEO_WIDTH, VIDEO_HEIGHT,
 				take = doc.querySelector('#take'),
 				computeSize = function(supportsObjectFit){
-					// user agents that don't support object-fit 
-					// will display the video with a different 
-					// aspect ratio. 
+					// user agents that don't support object-fit
+					// will display the video with a different
+					// aspect ratio.
 					if (supportsObjectFit == true){
 						VIDEO_WIDTH = 640;
 						VIDEO_HEIGHT = 480;
@@ -160,17 +160,17 @@
 					var snapshot = document.getElementById('snapshot'),
 						img = snapshot.toDataURL( "image/png" );
 
-					// hide canvas, show final image 
+					// hide canvas, show final image
 
 					document.write('<img src = ' + img + ' />');
 				};
 
 			take.addEventListener('click', snap, false);
-			
+
 			window.addEventListener('DOMContentLoaded', function() {
 
 				if ( hasGetUserMedia() ) {
-					
+
 					if (navigator.getUserMedia) {
 
 						navigator.getUserMedia({'video': true}, function( stream ) {
@@ -180,7 +180,7 @@
 						}, errorCallback);
 
 					}
-					
+
 					if (navigator.webkitGetUserMedia) {
 						// doesn't work using file:///Uset/path...
 						navigator.webkitGetUserMedia('video', function( stream ){
@@ -194,7 +194,7 @@
 				} else {
 
 					console.log('Native web camera streaming (getUserMedia) is not supported in this browser.');
-				
+
 				}
 
 			}, false);
