@@ -25,7 +25,7 @@
 
 		</style>
 	</head>
-	<body>
+	<body id="main">
 
 		<video id="video" width="640" height="480" autoplay="" >
 			<!-- <source src="default.webm" type="video/webm;" codecs="vp8, vorbis">
@@ -33,9 +33,7 @@
 		</video>
 
 		<!-- NEEDS THE DAMN WIDTH AND HEIGHT SET ON THE ELEMENT -->
-		<canvas id="snapshot" width="640" height="480" class="hidden">
-			
-		</canvas>
+		<canvas id="snapshot" width="640" height="480" class="hidden"></canvas>
 
 		<button id="take">Take Picture</button>
 
@@ -126,6 +124,7 @@
 				video = doc.querySelector('video'),
 				VIDEO_WIDTH, VIDEO_HEIGHT,
 				take = doc.querySelector('#take'),
+				img,
 				computeSize = function(supportsObjectFit){
 					// user agents that don't support object-fit 
 					// will display the video with a different 
@@ -145,24 +144,27 @@
 					return !!( navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia );
 				},
 				snap = function() {
-					var button = document.getElementById('take');
+					var button = document.getElementById('take'),
+						snapshot = document.getElementById('snapshot'),
+						img = snapshot.toDataURL( "image/png" ),
+						imgEl = '<img src = ' + img + ' id="save-me" />';
 
 					button.classList.add('hidden');
 
 					canvas.classList.remove('hidden');
 					computeSize(true);
 					ctx.drawImage(video, 0, 0, VIDEO_WIDTH, VIDEO_HEIGHT);
-					document.querySelector('canvas').src = canvas.toDataURL('image/canvas');
+					document.querySelector('canvas').src = canvas.toDataURL('image/png');
+					
 
 					// show or create a save button
-				},
-				save = function() {
-					var snapshot = document.getElementById('snapshot'),
-						img = snapshot.toDataURL( "image/png" );
+				// },
+				// save = function() {
+						
 
-					// hide canvas, show final image 
+				// 	// hide canvas, show final image 
 
-					document.write('<img src = ' + img + ' />');
+				// 	document.write('<img src = ' + img + ' id="save-me" />');
 				};
 
 			take.addEventListener('click', snap, false);
