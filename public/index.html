@@ -97,14 +97,17 @@
 
 				});
 			},
+
 			set = function ( filter, value ) {
 				FILTER_VALS[filter] = value;
 				render();
 			},
+
 			reset = function () {
 				FILTER_VALS = {};
 				render();
 			},
+
 			render = function () {
 				var vals = [],
 					val;
@@ -139,33 +142,36 @@
 						VIDEO_HEIGHT = video.videoHeight;
 					}
 				},
+
 				errorCallback =function ( error ) {
 					console.error('An error occurred: [CODE ' + error.code + ']');
 				},
+
 				hasGetUserMedia = function() {
 					return !!( navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia );
 				},
+
 				snap = function() {
 					var button = document.getElementById('take'),
-						snapshot = document.getElementById('snapshot'),
-						img = snapshot.toDataURL( "image/png" ),
-						imgEl = '<img src = ' + img + ' id="save-me" />';
+						canvasDataUrl = canvas.toDataURL('image/png');
 
 					button.classList.add('hidden');
 
 					canvas.classList.remove('hidden');
 					computeSize(true);
 					ctx.drawImage(video, 0, 0, VIDEO_WIDTH, VIDEO_HEIGHT);
-					document.querySelector('canvas').src = canvas.toDataURL('image/png');
-					
+					// document.querySelector('canvas').src = canvasDataUrl
 
-					// show or create a save button
-				// },
-				// save = function() {
-						
-					// hide canvas, show final image
+					// push img data URI to server
 
-				// 	document.write('<img src = ' + img + ' id="save-me" />');
+					console.log(canvas.toDataURL('image/png'));
+
+					var request = new XMLHttpRequest();
+
+					request.open('POST', '/snap', false);
+					// request.setRequestHeader("Content-type", "application/upload");
+					request.send(canvasDataUrl);
+					console.log(request);
 				};
 
 			take.addEventListener('click', snap, false);
@@ -201,7 +207,6 @@
 				}
 
 			}, false);
-
 
 		</script>
 	</body>
