@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<meta name="viewport" content="width=device-width, initial-scale=0.5">
+		<title>Page Title</title>
+	</head>
+	<body id="main">
+		<div id="wrap">
+			<video id="video" autoplay="" >
+				<!-- <source src="default.webm" type="video/webm;" codecs="vp8, vorbis">
+				<source src="default.mp4" type="video/mp4;" codecs="avc1.42E01E, mp4a.40.2"> -->
+			</video>
+
+			<!-- NEEDS THE DAMN WIDTH AND HEIGHT SET ON THE ELEMENT -->
+			<canvas id="snapshot" width="640" height="480" class="hidden">
+
+			</canvas>
+
+			<button id="take">Take Picture</button>
+
+			<ul id="thumbnails" class="unstyled">
+				<li></li>
+			</ul>
+
+
+			<ul id="filters" class="unstyled">
+				<li>
+					<label>Blur</label>
+					<input type="range" name="blur" min="0" max="10" value="0" step="1" onchange="set('blur', this.valueAsNumber + 'px')" />
+				</li>
+				<li>
+					<label>Grayscale</label>
+					<input type="range" name="grayscale" min="0" max="1" value="0" step="0.1" onchange="set('grayscale', this.valueAsNumber)" />
+				</li>
+				<li>
+					<label>Sepia</label>
+					<input type="range" name="sepia" min="0" max="1" value="0" step="0.1" onchange="set('sepia', this.valueAsNumber)" />
+				</li>
+				<li>
+					<label>Brightness</label>
+					<input type="range" name="brightness" min="0" max="10" value="0" step="0.1" onchange="set('brightness', this.valueAsNumber)" />
+				</li>
+				<li>
+					<label>Contrast</label>
+					<input type="range" name="contrast" min="0" max="10" value="0" step=".1" onchange="set('contrast', this.valueAsNumber)" />
+				</li>
+				<li>
+					<label>Hue Rotate</label>
+					<input type="range" name="hue-rotate" min="0" max="360" value="0" step="10" onchange="set('hue-rotate', this.valueAsNumber + 'deg')" />
+				</li>
+				<li>
+					<label>Saturate</label>
+					<input type="range" name="saturrate" min="0" max="10" value="0" step=".1" onchange="set('saturate', this.valueAsNumber)" />
+				</li>
+				<li>
+					<label>Invert</label>
+					<input type="range" name="invert" min="0" max="10" value="0" step=".1" onchange="set('contrast', this.valueAsNumber)" />
+				</li>
+				<li>
+					<label>Reset</label>
+					<input type="button" name="reset" onclick="reset()" />
+				</li>
+			</ul>
+
+		</div>
+
+
+		<script type="text/javascript">
+
+
+		</script>
+	</body>
+</html>

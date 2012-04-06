@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "express": "2.5.8",
-    "node-dev": "~0.2.2"
+    "node-dev": "~0.2.2",
+    "jade": "~0.22.1"
   }
 }

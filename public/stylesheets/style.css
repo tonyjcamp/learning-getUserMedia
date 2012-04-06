@@ -1,0 +1,39 @@
+body {
+	background: #111;
+}
+
+#wrap { 
+	background: #222;
+	border-radius: 5px;
+	width: 640px;
+	margin: 50px auto; 
+}
+
+
+.unstyled {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}	
+
+#filters {
+	background: rgba(0,0,0, 0.4);
+	display: none;
+}
+
+canvas {
+	background: #eaeaea;
+	display: block;
+	height: 480px;
+	width: 640px;
+	image-rendering: optimizeQuality;
+	object-fit: cover;
+}
+
+video {
+	width: 640px;
+}
+
+.hidden {
+	display: none;
+}
