@@ -10,12 +10,19 @@ var express = require('express'),
 var app = express.createServer();
 
 // config public directory
-app.use(express.static(__dirname + '/public'));
+app.set('views', __dirname + '/views');
+app.register('.html', require('jade'));
+app.use(express.bodyParser());
+app.use(app.router);
+// app.use(express.static(__dirname + '/public'));
 
 // Routes
-
 app.get('/', function(req, res) {
   res.render('index');
+});
+
+app.get('/please', function(req, res) {
+  res.render('please', { title: 'Please' });
 });
 
 app.post('/snap', function(req, res) {
