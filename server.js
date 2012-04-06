@@ -19,24 +19,23 @@ app.get('/', function(req, res) {
 });
 
 app.post('/snap', function(req, res) {
-	req.setEncoding('utf8');
+	var imageData = '';
+
 	req.on('data', function(chunk) {
-		// strip out "data:image/png;base64," from data stream
-		console.log(chunk);
-		console.log();
-		var imageData = chunk.replace(/^data:image\/png;base64,/,"");
-		console.log(imageData);
-		console.log();
-		var buffer = new Buffer(imageData, 'base64');
-		console.log(buffer);
-		fs.writeFile('images.png', buffer, function(err) {
-			if (err) console.log('error saving');
-			else console.log('it saved');
-		});
+		imageData += chunk;
 	});
 
 	req.on('end', function() {
-		res.send('ok');
+		imageData = imageData.replace(/^data:image\/png;base64,/,"");
+		
+		var buffer = new Buffer(imageData, 'base64');
+		
+		fs.writeFile('./public/images.png', buffer, function(err) {
+			if (err) console.log('error saving');
+			else console.log('it saved');
+		});
+
+		res.send(imageData);
 	});
 });
 

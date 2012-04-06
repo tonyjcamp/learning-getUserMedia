@@ -164,14 +164,12 @@
 
 					// push img data URI to server
 
-					console.log(canvas.toDataURL('image/png'));
-
 					var request = new XMLHttpRequest();
 
 					request.open('POST', '/snap', false);
-					// request.setRequestHeader("Content-type", "application/upload");
-					request.send(canvasDataUrl);
-					console.log(request);
+					request.setRequestHeader("Content-type", "image/png");
+					request.send(canvas.toDataURL('image/png'));
+					console.log('from server: ', request.responseText);
 				};
 
 			take.addEventListener('click', snap, false);
