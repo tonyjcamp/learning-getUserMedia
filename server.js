@@ -28,9 +28,10 @@ app.post('/snap', function(req, res) {
 	req.on('end', function() {
 		imageData = imageData.replace(/^data:image\/png;base64,/,"");
 		
-		var buffer = new Buffer(imageData, 'base64');
+		var buffer = new Buffer(imageData, 'base64'),
+			time = new Date().toJSON();
 		
-		fs.writeFile('./public/images.png', buffer, function(err) {
+		fs.writeFile('./public/snaps/images_' + time + '.png', buffer, function(err) {
 			if (err) console.log('error saving');
 			else console.log('it saved');
 		});
