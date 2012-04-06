@@ -9,8 +9,10 @@ var express = require('express'),
 // shorthand server
 var app = express.createServer();
 
-// config public directory
-app.use(express.static(__dirname + '/public'));
+// config party
+app.configure(function() {
+	app.use(express.static(__dirname + '/public'));
+});
 
 // Routes
 
