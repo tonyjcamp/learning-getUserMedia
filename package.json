@@ -5,6 +5,7 @@
   "dependencies": {
     "express": "2.5.8",
     "node-dev": "~0.2.2",
-    "jade": "~0.22.1"
+    "jade": "~0.22.1",
+    "bird": "~0.1.0"
   }
 }
