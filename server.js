@@ -7,9 +7,9 @@ var express = require('express'),
 	routes = require('./routes');
 	fs = require('fs'),
 	Bird = require('bird')({
-		oauth_token : '346918539-bYQJZIivJU3jPaKElW3ELMJNCMpvuZNXEFqN5gpi',
-		oauth_token_secret : 'eNuPlNUAgJlGu9yF5dn0K5y0BOp9xyLqgNuncFZU',
-		callback: '/callback'
+		oauth_token : 'TTpJ7j4gNqpkusHXG8CA',
+		oauth_token_secret : '4nhHO5JCK05zNtZbdxghJqzhRegWeVjYkYz57UxIpE',
+		callback: 'http://localhost:3000/callback'
 	});
 
 // shorthand server
@@ -38,7 +38,7 @@ app.configure('production', function(){
 // Routes
 app.get('/', function(req, res) {
 	if (req.session.signedIn) {
-		res.send("Hi " + req.session.screen_name + " it's nice to see you signed in");
+		res.redirect('/studio');
 	} else {
 		res.send('<a href="/login">login</a>');
 	}
@@ -74,13 +74,41 @@ app.get('/callback', function(req,res) {
 	});
 });
 
+
 app.get('/studio', function(req, res) {
-	res.render('index', {
-		title: 'getUserMedia',
-		user: 'olu'
+	var options = {
+		status: 'Testing Crrnt Stts!'
+	};
+
+	Bird.tweet(req, options, function(err, data, response) {
+		if (err) {
+			res.send(err);
+		}
+		else {
+			res.send(data);
+		}
 	});
+
+	// res.render('index', {
+	// 	title: 'getUserMedia',
+	// 	user: 'olu'
+	// });
 });
 
+app.get('/tweet', function(req, res) {
+	var options = {
+		status: 'Testing Crrnt Stts!'
+	};
+
+	Bird.tweet(req, options, function(err, data, response) {
+		if (err) {
+			res.send(err);
+		}
+		else {
+			res.send(data);
+		}
+	});
+});
 app.get('/please', function(req, res) {
 	res.render('please', { title: 'Please' });
 });
