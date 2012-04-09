@@ -76,28 +76,15 @@ app.get('/callback', function(req,res) {
 
 
 app.get('/studio', function(req, res) {
-	var options = {
-		status: 'Testing Crrnt Stts!'
-	};
-
-	Bird.tweet(req, options, function(err, data, response) {
-		if (err) {
-			res.send(err);
-		}
-		else {
-			res.send(data);
-		}
+	res.render('index', {
+		title: 'getUserMedia'
 	});
-
-	// res.render('index', {
-	// 	title: 'getUserMedia',
-	// 	user: 'olu'
-	// });
 });
 
 app.get('/tweet', function(req, res) {
 	var options = {
-		status: 'Testing Crrnt Stts!'
+		status: 'Testing Crrnt Stts!',
+		media: 'h'
 	};
 
 	Bird.tweet(req, options, function(err, data, response) {
@@ -108,9 +95,6 @@ app.get('/tweet', function(req, res) {
 			res.send(data);
 		}
 	});
-});
-app.get('/please', function(req, res) {
-	res.render('please', { title: 'Please' });
 });
 
 app.post('/snap', function(req, res) {
@@ -122,19 +106,40 @@ app.post('/snap', function(req, res) {
 
 	req.on('end', function() {
 		imageData = imageData.replace(/^data:image\/png;base64,/,"");
+
+		var options = {
+				status: 'Testing Crrnt Stts with pic!',
+				media: imageData
+			};
+
 		
 		var buffer = new Buffer(imageData, 'base64'),
 			filename = nameFile();
 		
+		options.filename = filename;
+
 		fs.writeFile(filename, buffer, function(err) {
 			if (err) {
 				console.log('error saving');
 			}
 			else {
 				console.log('It saved!');
-				res.send(filename);
+				
+				Bird.tweet(req, options, function(err, data, response) {
+					if (err) {
+						res.send(err);
+					} else {
+						//res.send(data);
+					}
+					});
+					// res.send(filename);
 			}
 		});
+
+
+
+
+
 	});
 });
 
