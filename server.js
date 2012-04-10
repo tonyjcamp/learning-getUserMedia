@@ -90,11 +90,11 @@ app.post('/snap', function(req, res) {
 	});
 
 	req.on('end', function() {
-		// imageData = imageData.replace(/^data:image\/png;base64,/,"");
+		imageData = imageData.replace(/^data:image\/png;base64,/,"");
 
 
-		var buffer = '', //new Buffer(imageData, 'base64'),
-			filename = nameFile();
+		// var buffer = '', //new Buffer(imageData, 'base64'),
+		// 	filename = nameFile();
 	
 
 		var options = {
