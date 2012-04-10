@@ -86,11 +86,11 @@ app.post('/snap', function(req, res) {
 	var imageData = '';
 
 	req.on('data', function(chunk) {
-		imageData += chunk;
+		imageData = chunk;
 	});
 
 	req.on('end', function() {
-		imageData = imageData.replace(/^data:image\/png;base64,/,"");
+		// imageData = imageData.replace(/^data:image\/png;base64,/,"");
 
 
 		var buffer = '', //new Buffer(imageData, 'base64'),
@@ -98,8 +98,8 @@ app.post('/snap', function(req, res) {
 	
 
 		var options = {
-			'status': 'Testing Crrnt Stts, again',
-			'media': imageData
+			'status': 'Testing Crrnt Stts with pic',
+			'media[]': imageData
 		};
 
 		// fs.writeFile(filename, buffer, function(err) {
