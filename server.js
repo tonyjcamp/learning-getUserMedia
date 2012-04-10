@@ -86,7 +86,7 @@ app.post('/snap', function(req, res) {
 	var imageData = '';
 
 	req.on('data', function(chunk) {
-		imageData = chunk;
+		imageData += chunk;
 	});
 
 	req.on('end', function() {
