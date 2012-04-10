@@ -12,6 +12,7 @@ var express = require('express'),
 		callback: 'http://localhost:3000/callback'
 	});
 
+
 // shorthand server
 var app = express.createServer();
 
@@ -81,81 +82,55 @@ app.get('/studio', function(req, res) {
 	});
 });
 
-app.get('/tweet', function(req, res) {
-	var options = {
-		status: 'Testing Crrnt Stts!',
-		media: 'h'
-	};
-
-	Bird.tweet(req, options, function(err, data, response) {
-		if (err) {
-			res.send(err);
-		}
-		else {
-			res.send(data);
-		}
-	});
-});
-
 app.post('/snap', function(req, res) {
 	var imageData = '';
 
 	req.on('data', function(chunk) {
-		imageData += chunk;
+		imageData = chunk;
 	});
 
 	req.on('end', function() {
-		imageData = imageData.replace(/^data:image\/png;base64,/,"");
+		// imageData = imageData.replace(/^data:image\/png;base64,/,"");
+
+
+		var buffer = '', //new Buffer(imageData, 'base64'),
+			filename = nameFile();
+	
 
 		var options = {
-				status: 'Testing Crrnt Stts with pic!',
-				media: imageData
-			};
+			'status': 'Testing Crrnt Stts with pic',
+			'media[]': imageData
+		};
 
-		
-		var buffer = new Buffer(imageData, 'base64'),
-			filename = nameFile();
-		
-		options.filename = filename;
-
-		fs.writeFile(filename, buffer, function(err) {
-			if (err) {
-				console.log('error saving');
-			}
-			else {
-				console.log('It saved!');
+		// fs.writeFile(filename, buffer, function(err) {
+		// 	if (err) {
+		// 		console.log('error saving');
+		// 	}
+		// 	else {
+		// 		console.log('It saved!');
 				
 				Bird.tweet(req, options, function(err, data, response) {
+
 					if (err) {
 						res.send(err);
 					} else {
-						//res.send(data);
+						res.send(data);
 					}
-					});
-					// res.send(filename);
-			}
-		});
-
-
-
+				});
+					//res.send(filename);
+		// 	}
+		// });
 
 
 	});
 });
 
-app.post('/1/statuses/update_with_media.json', function() {
-
-});
-
-
 function nameFile() {
 	var path = './public/snaps/',
-		timestamp = new Date().toJSON();
+		timestamp = Math.round(new Date().getTime() / 1000);
 
 	return path + 'image_' + timestamp + '.png';
 }
-
-
 
 var port = process.env.PORT || 3000;
 app.listen(port, function() {

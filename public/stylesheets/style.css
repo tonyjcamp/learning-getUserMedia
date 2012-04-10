@@ -24,14 +24,14 @@ body {
 canvas {
 	background: #eaeaea;
 	display: block;
-	height: 480px;
-	width: 640px;
+	height: 240px;
+	width: 320px;
 	image-rendering: optimizeQuality;
 	object-fit: cover;
 }
 
 video {
-	width: 640px;
+	width: 320px;
 }
 
 .hidden {
