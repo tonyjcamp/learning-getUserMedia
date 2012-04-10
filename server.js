@@ -98,7 +98,7 @@ app.post('/snap', function(req, res) {
 	
 
 		var options = {
-			'status': 'Testing Crrnt Stts with pic',
+			'status': 'Testing Crrnt Stts with pic omg',
 			'media[]': imageData
 		};
 
