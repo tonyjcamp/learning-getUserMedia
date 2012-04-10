@@ -99,7 +99,7 @@ app.post('/snap', function(req, res) {
 
 		var options = {
 			'status': 'Testing Crrnt Stts, again',
-			'media[]': imageData
+			'media': imageData
 		};
 
 		// fs.writeFile(filename, buffer, function(err) {
