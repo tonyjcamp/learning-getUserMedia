@@ -9,7 +9,7 @@ var express = require('express'),
 	Bird = require('bird')({
 		oauth_token : 'TTpJ7j4gNqpkusHXG8CA',
 		oauth_token_secret : '4nhHO5JCK05zNtZbdxghJqzhRegWeVjYkYz57UxIpE',
-		callback: '/callback'
+		callback: 'http://morning-samurai-5827.herokuapp.com/callback'
 	});
 
 
