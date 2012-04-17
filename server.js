@@ -8,8 +8,9 @@ var express = require('express'),
 	Bird = require('bird')({
 		oauth_token : 'TTpJ7j4gNqpkusHXG8CA',
 		oauth_token_secret : '4nhHO5JCK05zNtZbdxghJqzhRegWeVjYkYz57UxIpE',
-		callback: 'http://localhost:3000/callback'
+		callback: 'http://morning-samurai-5827.herokuapp.com/callback'
 	});
+
 
 // shorthand server
 var app = express.createServer();
@@ -39,6 +40,7 @@ app.configure('production', function(){
 require('./apps/photo-booth/routes')(app);
 require('./apps/authentication/routes')(app);
 
+// Port config
 var port = process.env.PORT || 3000;
 app.listen(port, function() {
   console.log("Listening on " + port);

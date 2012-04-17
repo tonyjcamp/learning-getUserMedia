@@ -24,15 +24,19 @@ body {
 canvas {
 	background: #eaeaea;
 	display: block;
-	height: 480px;
-	width: 640px;
+	height: 240px;
+	width: 320px;
 	image-rendering: optimizeQuality;
 	object-fit: cover;
 }
 
 video {
+<<<<<<< HEAD
 	width: 500px;
 	border-radius: 7px;
+=======
+	width: 320px;
+>>>>>>> 95d58eb6ce923f4999fdf4478f3dfc6f72c6c306
 }
 
 .hidden {

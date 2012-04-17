@@ -53,8 +53,8 @@ var doc = document,
 		// will display the video with a different
 		// aspect ratio.
 		if (supportsObjectFit == true){
-			VIDEO_WIDTH = 640;
-			VIDEO_HEIGHT = 480;
+			VIDEO_WIDTH = 320;
+			VIDEO_HEIGHT = 240;
 		} else {
 			VIDEO_WIDTH = video.videoWidth;
 			VIDEO_HEIGHT = video.videoHeight;
@@ -73,7 +73,7 @@ var doc = document,
 		var button = document.getElementById('take'),
 			canvasDataUrl = canvas.toDataURL('image/png');
 
-		button.classList.add('hidden');
+		//button.classList.add('hidden');
 
 		canvas.classList.remove('hidden');
 		computeSize(true);
