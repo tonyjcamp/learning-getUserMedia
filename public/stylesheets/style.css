@@ -1,12 +1,12 @@
 body {
-	background: #111;
+	background: #242424;
 }
 
-#wrap { 
+#wrap {
 	background: #222;
 	border-radius: 5px;
-	width: 640px;
-	margin: 50px auto; 
+	width: 500px;
+	margin: 50px auto;
 }
 
 
@@ -14,7 +14,7 @@ body {
 	list-style: none;
 	margin: 0;
 	padding: 0;
-}	
+}
 
 #filters {
 	background: rgba(0,0,0, 0.4);
@@ -31,7 +31,8 @@ canvas {
 }
 
 video {
-	width: 640px;
+	width: 500px;
+	border-radius: 7px;
 }
 
 .hidden {
